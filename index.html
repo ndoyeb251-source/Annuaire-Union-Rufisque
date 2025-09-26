@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire Union de Rufisque (Local)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Annuaire de l'Union de Rufisque</h1>
+
+        <div id="stats-global">
+         <div style="margin-bottom: 25px;">
+            <h2>Rechercher un Membre</h2>
+            <input type="text" id="barre-recherche" placeholder="Rechercher par Nom ou par Fonction..." onkeyup="filtrerMembres()" style="width: 100%; padding: 12px; border: 1px solid #007bff; border-radius: 5px;">
+        </div>
+
+            Nombre total de membres : <span id="total-membres">0</span>
+        </div>
+        
+        <div id="form-ajout">
+            <h2>Ajouter un Membre</h2>
+            <input type="text" id="nom" placeholder="Nom et Prénom" required>
+            <input type="text" id="telephone" placeholder="Numéro de Téléphone" required>
+            <input type="text" id="fonction" placeholder="Fonction / Métier" required>
+            <button onclick="ajouterMembre()">Enregistrer le Membre</button>
+        </div>
+
+        <div id="form-modification">
+            <h2>Modifier un Membre</h2>
+            <input type="hidden" id="edit-id">
+            <input type="text" id="edit-nom" placeholder="Nom et Prénom" required>
+            <input type="text" id="edit-telephone" placeholder="Numéro de Téléphone" required>
+            <input type="text" id="edit-fonction" placeholder="Fonction / Métier" required>
+            <button onclick="sauvegarderModification()">Sauvegarder les Modifications</button>
+            <button class="back-button" onclick="annulerModification()">Annuler</button>
+        </div>
+
+        <h2>Regroupement par Fonction</h2>
+        <div id="stats-regroupement">
+            </div>
+
+        <div style="margin-bottom: 25px;">
+        <h2>Options de Tri</h2>
+        <div style="margin-bottom: 			25px; padding: 15px; 					background: #fff; border-				radius: 5px;">
+        <h2>Sauvegarde des Données</h2>
+            <button onclick="exporterDonnees()" style="width: 48%; margin-right: 4%;">Exporter (Télécharger le fichier)</button>
+            <input type="file" id="fichier-import" accept=".json" style="display: none;" onchange="importerDonnees()">
+            <button onclick="document.getElementById('fichier-import').click()" style="width: 48%; background-color: #ff9800;">Importer (Charger le fichier)</button>
+        </div>
+
+            <label for="critere-tri" style="font-weight: bold; margin-right: 10px;">Trier par :</label>
+            <select id="critere-tri" onchange="appliquerTriEtAfficher()" style="padding: 8px; border-radius: 5px; border: 1px solid #ced4da;">
+                <option value="nom">Nom (A-Z)</option>
+                <option value="fonction">Fonction</option>
+                <option value="telephone">Téléphone</option>
+            </select>
+            <button onclick="appliquerTriEtAfficher(true)" style="width: auto; margin-left: 10px; background-color: #6c757d;">Inverser l'Ordre</button>
+        </div>
+
+        
+        <h2>Liste des Membres</h2>
+        <ul id="liste-membres">
+            </ul>
+    </div>
+    
+</body>
+</html>
